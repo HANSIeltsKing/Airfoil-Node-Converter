@@ -7,13 +7,13 @@ from matplotlib import pyplot as plt
 
 x1 = [1, 0.9, 0.6, 0.2, 0, 0.2, 0.6, 0.9, 1]
 y1 = [0, 0.4, 1, 0.5, 0, -0.5, -1.0, -0.4, 0]
-l2 = 7
+node = 12
 
 """
-af = pd.read_excel("C:/Users/xxx/Desktop/xxx.xlsx", sheet_name = "Sheet1", header = None) # use your path
+af = pd.read_excel("C:/Users/xxx/Desktop/yourexcelname.xlsx", sheet_name = "Sheet1", header = None) # use your path
 x1 = af[0].tolist()
 y1 = af[1].tolist()
-l2 = 126
+node = 250
 """
 
 inputx = []
@@ -22,10 +22,9 @@ for i in range(int(0.5 * len(x1) + 1)):
 inputy = []
 for i in range(int(0.5 * len(y1) + 1)):
     inputy.append(-y1[-int(0.5 * len(y1) - i + 1)])
-print(inputx)
-print(inputy)
 
 l1 = len(inputx)
+l2 = 1 + int(node / 2)
 def partition(num):
     list = []
     list.append(0)
@@ -62,7 +61,6 @@ for i in range(l2-2):
         g = xintv[i - z][0] + (xintv[i - z][1] - xintv[i - z][0]) * (1 - (((i + 1) / ped) - int((i + 1) / ped)))
     r.append(round(g, 12))
 r.append(1)
-print(r)
 
 x = np.array(inputx)
 y = np.array(inputy)
@@ -74,7 +72,6 @@ plt.scatter(x, y, marker='o')
 spl = UnivariateSpline(x_smooth, y_smooth, k=5, s=0)
 ylist = [round(num, 12) for num in (spl(r).tolist())]
 youtput = [abs(ele) for ele in ylist]
-print(youtput)
 
 dim = 2 * len(r) - 1
 x2 = []
