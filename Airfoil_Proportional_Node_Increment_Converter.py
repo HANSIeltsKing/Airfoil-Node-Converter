@@ -9,6 +9,13 @@ x1 = [1, 0.9, 0.6, 0.2, 0, 0.2, 0.6, 0.9, 1]
 y1 = [0, 0.4, 1, 0.5, 0, -0.5, -1.0, -0.4, 0]
 l2 = 7
 
+"""
+af = pd.read_excel("C:/Users/xxx/Desktop/xxx.xlsx", sheet_name = "Sheet1", header = None) # use your path
+x1 = af[0].tolist()
+y1 = af[1].tolist()
+l2 = 126
+"""
+
 inputx = []
 for i in range(int(0.5 * len(x1) + 1)):
     inputx.append(x1[-int(0.5 * len(x1) - i + 1)])
