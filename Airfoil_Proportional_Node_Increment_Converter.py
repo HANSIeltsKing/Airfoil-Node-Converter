@@ -34,11 +34,9 @@ def partition(num):
     for i in range(num):
         list.append(round((i+1) * (1/num), 12))
     return list
-
 def intersection(list1, list2):
     list3 = [value for value in list1 if value in list2]
     return list3
-
 clean = [0, 1]
 intsec_list = intersection(partition(l1-1), partition(l2-1))
 intsec = [item for item in intsec_list if item not in clean]
