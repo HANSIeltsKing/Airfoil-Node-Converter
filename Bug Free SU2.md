@@ -27,6 +27,11 @@ source env/bin/activate
 sudo apt-get install openmpi-bin
 <br/>
 
+**Install mpi4py**
+<br/>
+pip3 install mpi4py
+<br/>
+
 **Check whether your /usr/bin/ has mpicc and mpicxx**
 <br/>
 
@@ -42,6 +47,7 @@ export PYTHONPATH=/home/xxx/env/bin
 **Go to the /home/xxx/SU2-7.3.1/externals/cgns/hdf5/meson.build and modify code in line 28&29**
 <br/>
 opt_zlib = dependency('zlib', required: false, static: false)
+<br/>
 opt_szip = dependency('szip', required: false, static: false)
 
 **Build by meson (Do not reconfigure)**
@@ -57,14 +63,58 @@ opt_szip = dependency('szip', required: false, static: false)
 **Change environment variables**
 <br/>
 nano .bashrc
->>export SU2_RUN=/usr/local/bin (you can see some files and python code here, in some cases it is in the /home/xxx/SU2-7.3.1/SU2/bin
->>export su2_home=/home/xxx/SU2-7.3.1
->>export PATH=$PATH:$SU2_RUN
->>export PYTHONPATH=$PYTHONPATH:$SU2_RUN
+<br/>
+<br/>
+export SU2_RUN=/usr/local/bin (you can see some files and python code here, in some cases it is in the /home/xxx/SU2-7.3.1/SU2/bin
+<br/>
+export su2_home=/home/xxx/SU2-7.3.1
+<br/>
+export PATH=$PATH:$SU2_RUN
+<br/>
+export PYTHONPATH=$PYTHONPATH:$SU2_RUN
+<br/>
+<br/>
 source .bashrc
 <br/>
 
+**Install scipy and mpi4py again**
+<br/>
+pip3 install mpi4py --target=/...
+<br/>
+pip3 install scipy --target=/...
+<br/>
 
+## Possible errors
+<br/>
+
+**1. Lacking mpi.h**
+<br/>
+Upzipping again, do not reconfigure.
+<br/>
+
+**2. Linking target SU2_PY/pySU2/_pysu2.so Failed: SU2_PY/pySU2/_pysu2.so or lacking mpi4py/mpi4py.h**
+<br/>
+Editting code in the /home/xxx/SU2-7.3.1/externals/cgns/hdf5/meson.build is necessary
+<br/>
+
+**3. Error: Tried to form an absolute path to a source dir. You should not do that but use relative paths instead**
+<br/>
+That is why two mpi4pys are used.
+<br/>
+env should be outside the SU2-7.3.1
+<br/>
+
+**4. Linux command no permission**
+<br/>
+sudo su
+<br/>
+your password
+<br/>
+
+**5. WSL no permission**
+<br/>
+sudo chmod -R 777 /home/xxx/
+<br/>
 
 
 
